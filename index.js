@@ -3,7 +3,7 @@ const fs = require('fs');
 const multer = require('multer');
 
 const app = express();
-const PORT = 8080;
+const PORT = 8000;
 const notesFilePath = './notes.json';
 
 app.use(express.json());
