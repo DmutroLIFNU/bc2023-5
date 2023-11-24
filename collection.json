@@ -49,6 +49,10 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
 					"raw": "http://localhost:8000/upload",
 					"protocol": "http",
