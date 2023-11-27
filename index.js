@@ -22,9 +22,8 @@ const upload = multer({ storage });
 
 app.get('/notes', (req, res) => {
   try {
-    const notes = getNotesFromFile();
-
-    if (Object.keys(notes).length > 0) {
+    if (fs.existsSync(notesFilePath)) { 
+      const notes = getNotesFromFile();
       res.json(notes);
     } else {
       res.json([]); 
