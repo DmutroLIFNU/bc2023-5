@@ -91,7 +91,17 @@
 			"name": "put/notes",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"note\": \"New text\"\r\n}"
+				},
 				"url": {
 					"raw": "http://localhost:8000/notes/Dmytro",
 					"protocol": "http",
