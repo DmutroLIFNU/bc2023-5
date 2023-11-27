@@ -74,22 +74,21 @@ app.get('/notes/:noteName', (req, res) => {
 
 app.put('/notes/:noteName', (req, res) => {
   try {
-    const noteName = req.params.noteName; // Отримуємо назву нотатки з URL
-    const newNoteText = req.body.note; // Отримуємо новий текст нотатки з тіла запиту
-    const notes = getNotesFromFile(); // Отримуємо всі нотатки
+    const noteName = req.params.noteName;
+    const newNoteText = req.body.note;
+    const notes = getNotesFromFile();
 
-    if (notes.hasOwnProperty(noteName)) { // Перевіряємо, чи існує нотатка з такою назвою
-      notes[noteName].note_text = newNoteText; // Оновлюємо текст нотатки
-      saveNotesToFile(notes); // Зберігаємо оновлені дані у файлі
-      res.send('Note updated successfully.'); // Відправляємо підтвердження про успішне оновлення
+    if (notes.hasOwnProperty(noteName)) {
+      notes[noteName] = newNoteText;
+      saveNotesToFile(notes);
+      res.send('Note updated successfully.');
     } else {
-      res.status(404).send('Note not found.'); // Відправляємо статус 404, якщо нотатка не знайдена
+      res.status(404).send('Note not found.');
     }
   } catch (err) {
-    res.status(500).send(err.message); // Відправляємо статус 500 у разі помилки
+    res.status(500).send(err.message);
   }
 });
-
 
 app.delete('/notes/:noteName', (req, res) => {
   try {
