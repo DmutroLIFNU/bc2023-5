@@ -23,7 +23,12 @@ const upload = multer({ storage });
 app.get('/notes', (req, res) => {
   try {
     const notes = getNotesFromFile();
-    res.json(notes);
+
+    if (Object.keys(notes).length > 0) {
+      res.json(notes);
+    } else {
+      res.json([]); 
+    }
   } catch (err) {
     res.status(500).send(err.message);
   }
@@ -42,7 +47,7 @@ app.post('/upload', upload.single('note'), (req, res) => {
     const { note_name, note } = req.body;
     const notes = getNotesFromFile();
 
-    if (!note_name || !note_name.trim()) { // Перевірка, чи є поле 'note' пустим або складається лише з пробілів
+    if (!note_name || !note_name.trim()) { 
       res.status(400).send('Note name cannot be empty.');
     } else if (notes.hasOwnProperty(note_name)) {
       res.status(400).send('Note with this name already exists.');
